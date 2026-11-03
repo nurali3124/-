@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Экскурсии на природе</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <div id="home">
+    <h1>Экскурсии на природе</h1>
+
+    <p>
+      Откройте для себя интересные места
+      и узнайте больше о природе родного края!
+    </p>
+
+    <h2>О наших экскурсиях</h2>
+
+    <p>
+      Прогулки по лесным тропам, посещение парков
+      и знакомство с природными достопримечательностями.
+    </p>
+
+    <p>
+      Во время экскурсии можно увидеть красивые пейзажи,
+      узнать о растениях и животных
+      и сделать памятные фотографии.
+    </p>
+
+    <p>
+      <a href="gallery.html">
+        Посмотреть фотографии мест для экскурсий
+      </a>
+    </p>
+
+    <button type="button" onclick="openForm()">
+      Заполнить анкету участника
+    </button>
+  </div>
+
+  
+  <div id="formPage" hidden>
+    <h1>Анкета участника экскурсии</h1>
+
+    <p>Заполните все поля.</p>
+
+    <form onsubmit="sendForm(event)">
+      <label for="surname">Фамилия:</label><br>
+      <input
+        id="surname"
+        name="surname"
+        type="text"
+        minlength="2"
+        maxlength="40"
+        autocomplete="family-name"
+        required
+      >
+      <br><br>
+
+      <label for="firstName">Имя:</label><br>
+      <input
+        id="firstName"
+        name="firstName"
+        type="text"
+        minlength="2"
+        maxlength="30"
+        autocomplete="given-name"
+        required
+      >
+      <br><br>
+
+      <label for="birth">Дата рождения:</label><br>
+      <input
+        id="birth"
+        name="birth"
+        type="date"
+        autocomplete="bday"
+        required
+      >
+      <br><br>
+
+      <label for="city">Город:</label><br>
+      <input
+        id="city"
+        name="city"
+        type="text"
+        autocomplete="address-level2"
+        required
+      >
+      <br><br>
+
+      <label for="country">Страна:</label><br>
+      <input
+        id="country"
+        name="country"
+        type="text"
+        autocomplete="country-name"
+        required
+      >
+      <br><br>
+
+      <label for="phone">Телефон:</label><br>
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        placeholder="+79991234567"
+        pattern="[+]?[0-9]{10,15}"
+        title="От 10 до 15 цифр без пробелов"
+        autocomplete="tel"
+        required
+      >
+      <br><br>
+
+      <button type="submit">
+        Проверить анкету
+      </button>
+    </form>
+
+    <p id="result" role="status" tabindex="-1"></p>
+
+    <button type="button" onclick="openHome()">
+      На главную
+    </button>
+  </div>
+
+  <hr>
+
+  <p>
+    Учебный сайт об экскурсиях.
+    
+  </p>
+
+  <script>
+    function openForm() {
+      document.getElementById("home").hidden = true;
+      document.getElementById("formPage").hidden = false;
+
+      window.scrollTo(0, 0);
+      document.getElementById("surname").focus();
+    }
+
+    function openHome() {
+      document.getElementById("formPage").hidden = true;
+      document.getElementById("home").hidden = false;
+
+      window.scrollTo(0, 0);
+    }
+
+    function sendForm(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("firstName").value;
+      const result = document.getElementById("result");
+
+      result.textContent =
+        name + ", анкета участника экскурсии заполнена! ";
+
+
+      result.focus();
+    }
+  </script>
+
+</body>
+</html>
